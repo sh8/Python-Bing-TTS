@@ -91,7 +91,7 @@ class Translator(object):
         # Post to Bing API
         urlpath = "/".join([self.base_path, path])
         conn = httplib.HTTPSConnection(self.base_host)
-        conn.request(method="POST", url=urlpath, headers=headerfields, body=body)
+        conn.request(method="POST", url=urlpath, headers=headerfields, body=body.encode('utf-8'))
         resp = conn.getresponse()
         # If token was expired, get a new one and try again
         if int(resp.status) == 401:
